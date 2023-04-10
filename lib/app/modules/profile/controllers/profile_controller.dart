@@ -15,14 +15,14 @@ class ProfileController extends GetxController with BaseController {
   }
 
   getProfileData() async {
-    showLoading();
+    // showLoading();
     var response = await DioClient()
         .get(
           url: ApiUrl.profile,
         )
         .catchError(handleError);
     profileModel = ProfileModel.fromJson(response.data);
-    hideLoading();
+    // hideLoading();
   }
 
   @override

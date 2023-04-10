@@ -6,26 +6,29 @@ import '../../../service/dio_client.dart';
 import '../model/product_model.dart';
 
 class HomeController extends GetxController with BaseController {
+  bool loader = false;
   final productList = RxList<ProductModel>();
-  @override
-  void onInit() {
-    getPostList();
+  void onInit() async {
+    await getProductList();
     super.onInit();
   }
 
-  getPostList() async {
-    // showLoading();
+  @override
+  getProductList() async {
+    loader = true;
+    update();
     var response =
         await DioClient().get(url: ApiUrl.products).catchError(handleError);
     if (response == null) return;
     productList.assignAll(
         (response.data as List).map((e) => ProductModel.fromJson(e)).toList());
-
-    // hideLoading();
+    loader = false;
+    update();
   }
 
   @override
-  void onReady() {
+  void onReady() async {
     super.onReady();
+    await getProductList();
   }
 }

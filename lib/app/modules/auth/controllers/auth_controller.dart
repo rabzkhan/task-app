@@ -8,7 +8,6 @@ import '../../../service/dio_client.dart';
 import '../../home/bindings/home_binding.dart';
 
 class AuthController extends GetxController with BaseController {
-  // final _myBox = Hive.box('mybox');
   final TextEditingController userName = TextEditingController();
   final TextEditingController password = TextEditingController();
 
