@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:task_app/app/modules/Page2/views/page2_view.dart';
-import 'package:task_app/app/modules/Page3/views/page3_view.dart';
+import 'package:task_app/app/modules/addProduct/views/add_product_view.dart';
 import 'package:task_app/app/modules/home/views/home_view.dart';
-import 'package:task_app/config/theme/my_fonts.dart';
 import 'package:iconly/iconly.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:task_app/app/modules/profile/views/profile_view.dart';
 
 class BottomNavbar extends StatelessWidget {
   BottomNavbar({Key? key}) : super(key: key);
 
   List navigation = [
     const HomeView(),
-    const Page2View(),
-    const Page3View(),
+    const AddProductView(),
+    const ProfileView(),
   ];
   int _selectedIndex = 0;
 

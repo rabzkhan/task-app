@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/page2_controller.dart';
+import '../controllers/add_product_controller.dart';
 
-class Page2View extends GetView<Page2Controller> {
-  const Page2View({Key? key}) : super(key: key);
+class AddProductView extends GetView<AddProductController> {
+  const AddProductView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Page2View'),
+        title: const Text('AddProductView'),
         centerTitle: true,
       ),
-      body: const Center(
+      body: Center(
         child: Text(
-          'Page2View is working',
+          'AddProductView is working',
           style: TextStyle(fontSize: 20),
         ),
       ),

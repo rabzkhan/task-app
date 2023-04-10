@@ -5,11 +5,13 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:hive/hive.dart';
 
 import 'helper/api_header.dart';
 
 class DioClient {
   static const int TIME_OUT_DURATION = 20;
+  var box = Hive.box('myBox');
 
   //GET
 
@@ -20,11 +22,12 @@ class DioClient {
     try {
       var response = await Dio()
           .get(url,
-              options: Options(headers: Header.defaultHeader),
+              options: Options(
+                headers: {"Authorization": "Bearer ${box.get('token')}"},
+              ),
               queryParameters: params)
           .timeout(const Duration(seconds: TIME_OUT_DURATION));
-
-      return response.data;
+      return response;
     } catch (e) {
       rethrow;
     }
@@ -43,7 +46,7 @@ class DioClient {
               data: payload)
           .timeout(const Duration(seconds: TIME_OUT_DURATION));
 
-      return response.data;
+      return response;
     } catch (e) {
       rethrow;
     }
@@ -61,7 +64,7 @@ class DioClient {
               queryParameters: params,
               data: payload)
           .timeout(const Duration(seconds: TIME_OUT_DURATION));
-      return response.data;
+      return response;
     } catch (e) {
       rethrow;
     }
@@ -79,7 +82,7 @@ class DioClient {
               queryParameters: params,
               data: payload)
           .timeout(const Duration(seconds: TIME_OUT_DURATION));
-      return response.data;
+      return response;
     } catch (e) {
       rethrow;
     }
@@ -108,7 +111,7 @@ class DioClient {
               queryParameters: params,
               data: formData)
           .timeout(const Duration(seconds: TIME_OUT_DURATION));
-      return response.data;
+      return response;
     } catch (e) {
       rethrow;
     }
@@ -134,7 +137,7 @@ class DioClient {
               queryParameters: params,
               data: formData)
           .timeout(const Duration(seconds: TIME_OUT_DURATION));
-      return response.data;
+      return response;
     } catch (e) {
       rethrow;
     }

@@ -1,6 +1,7 @@
 class ApiUrl {
   /// Base URL
-  static const baseUrl = "https://jsonplaceholder.typicode.com";
-  static const allPosts = "$baseUrl/posts";
-  static const postDetail = "$baseUrl/posts/";
+  static const baseUrl = "https://secure-falls-43052.herokuapp.com/api";
+  static const login = "$baseUrl/authenticate";
+  static const profile = "$baseUrl/account";
+  static const products = "$baseUrl/products";
 }

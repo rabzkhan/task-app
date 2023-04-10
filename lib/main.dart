@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'app/data/local/my_hive.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 import 'app/data/local/my_shared_pref.dart';
-import 'app/data/models/user_model.dart';
 import 'app/routes/app_pages.dart';
 import 'config/theme/my_theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  await MyHive.init(adapters: [UserModelAdapter()]);
-
+  var directory = await getApplicationDocumentsDirectory();
+  Hive.init(directory.path);
+  var box = await Hive.openBox('myBox');
   await MySharedPref.init();
 
   // await FcmHelper.initFcm();
-
   runApp(
     ScreenUtilInit(
       designSize: const Size(375, 812),
@@ -38,8 +37,9 @@ Future<void> main() async {
               ),
             );
           },
-          initialRoute:
-              AppPages.NAV, // first screen to show when app is running
+          initialRoute: box.get('token') != null
+              ? AppPages.Nav
+              : AppPages.AUTH, // first screen to show when app is running
           getPages: AppPages.routes, // app screens
           // locale: MySharedPref.getCurrentLocal(), // app language
           // translations:
