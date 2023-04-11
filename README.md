@@ -1,3 +1,5 @@
+## Runs on Flutter 3.7.10
+
 
 ## Acknowledgment
 Project was created using [get_cli](https://pub.dev/packages/get_cli) which is a great tool helping you to (start project,create screens/controllers, handling DI)..etc and we will list other packages that helped to create this skeleton
@@ -39,3 +41,21 @@ Container(
     child: Text("Hello",style: TextStyle(fontSize: 20.sp,))
 )
 ```
+
+- Change app package name
+    ```
+    flutter pub run change_app_package_name:main com.new.package.name
+    ```
+- Change app name
+    ```
+    flutter pub run rename_app:main all="My App Name"
+    ```
+- Change app launch icon (replace assets/images/app_icon.png with your app icon) then run this command
+    ```
+    flutter pub run flutter_launcher_icons:main
+    ```
+- Change app splash screen (replace assets/images/splash.png with your app splash logo) then run this command
+   ```
+   flutter pub run flutter_native_splash:create
+   ```
+
