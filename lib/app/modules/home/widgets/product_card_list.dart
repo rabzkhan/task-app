@@ -72,61 +72,59 @@ Widget itemCardList(ProductModel item, index, context) {
             ),
           ),
           //changehere
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsets.fromLTRB(8.w, 8.h, 0.w, 4.h),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.fromLTRB(8.w, 8.h, 0.w, 4.h),
+                child: SizedBox(
+                  width: 220.w,
                   child: SizedBox(
-                    width: 220.w,
-                    child: SizedBox(
-                      height: 40.h,
-                      child: Text(
-                        item.name!,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontSize: MyFonts.body1TextSize,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 8.w),
-                  child: SizedBox(
-                    height: 30.h,
+                    height: 40.h,
                     child: Text(
-                      item.description!,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: MyFonts.chipTextSize,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black54,
-                      ),
+                      item.name!,
                       maxLines: 2,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 8.w, top: 4),
-                  child: SizedBox(
-                    child: Text(
-                      item.productPrice!.price.toString(),
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         fontSize: MyFonts.body1TextSize,
                         fontWeight: FontWeight.w600,
+                        color: Colors.black,
                       ),
-                      maxLines: 1,
                     ),
                   ),
-                )
-              ],
-            ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 8.w),
+                child: SizedBox(
+                  height: 30.h,
+                  child: Text(
+                    item.description!,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: MyFonts.chipTextSize,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black54,
+                    ),
+                    maxLines: 2,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 8.w, top: 4),
+                child: SizedBox(
+                  child: Text(
+                    item.productPrice!.price.toString(),
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: MyFonts.body1TextSize,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    maxLines: 1,
+                  ),
+                ),
+              )
+            ],
           )
         ]),
       ),

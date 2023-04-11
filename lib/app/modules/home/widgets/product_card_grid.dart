@@ -71,50 +71,48 @@ Widget itemCardGrid(item, index, context) {
           ),
           Padding(
             padding: const EdgeInsets.only(left: 8, top: 8),
-            child: Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 40.h,
-                    child: Text(item[index].name!,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontSize: MyFonts.body1TextSize,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        )),
-                  ),
-                  SizedBox(
-                    height: 8.h,
-                  ),
-                  SizedBox(
-                    height: 30.h,
-                    child: Text(
-                      item[index].description!,
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: MyFonts.chipTextSize,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black54,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    child: Text(
-                      item[index].productPrice!.price.toString(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 40.h,
+                  child: Text(item[index].name!,
+                      maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         fontSize: MyFonts.body1TextSize,
                         fontWeight: FontWeight.w600,
-                      ),
-                      maxLines: 1,
+                        color: Colors.black,
+                      )),
+                ),
+                SizedBox(
+                  height: 8.h,
+                ),
+                SizedBox(
+                  height: 30.h,
+                  child: Text(
+                    item[index].description!,
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: MyFonts.chipTextSize,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black54,
                     ),
-                  )
-                ],
-              ),
+                  ),
+                ),
+                SizedBox(
+                  child: Text(
+                    item[index].productPrice!.price.toString(),
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: MyFonts.body1TextSize,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    maxLines: 1,
+                  ),
+                )
+              ],
             ),
           ),
         ],
