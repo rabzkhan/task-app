@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -52,28 +54,13 @@ Widget itemCardGrid(item, index, context) {
           SizedBox(
             height: 90.h,
             child: ClipRRect(
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(16.r),
-                  topRight: Radius.circular(16.r)),
-              child: CachedNetworkImage(
-                imageUrl: item[index].image!,
-                imageBuilder: (context, imageProvider) => Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: imageProvider,
-                      fit: BoxFit.cover,
-                      // colorFilter: ColorFilter.mode(
-                      //     Colors.red, BlendMode.colorBurn),
-                    ),
-                  ),
-                ),
-                placeholder: (context, url) => Shimmer.fromColors(
-                  // ignore: sort_child_properties_last
-                  child: Container(height: 90.h, color: Colors.grey),
-                  baseColor: Colors.grey[300]!,
-                  highlightColor: Colors.grey[400]!,
-                ),
-                errorWidget: (context, url, error) => Image.asset(
+              borderRadius: BorderRadius.all(Radius.circular(16.r)),
+              child: Image.file(
+                File(item[index].image.toString()),
+                fit: BoxFit.cover,
+                height: 90.h,
+                width: double.infinity,
+                errorBuilder: (context, url, error) => Image.asset(
                   AppImages.no_image,
                   fit: BoxFit.contain,
                   height: 130.h,

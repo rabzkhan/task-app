@@ -1,4 +1,6 @@
 // ignore_for_file: sort_child_properties_last
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -55,25 +57,12 @@ Widget itemCardList(ProductModel item, index, context) {
             width: 110.w,
             child: ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(16.r)),
-              child: CachedNetworkImage(
-                imageUrl: item.image.toString(),
-                imageBuilder: (context, imageProvider) => Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: imageProvider,
-                      fit: BoxFit.cover,
-                      // colorFilter: ColorFilter.mode(
-                      //     Colors.red, BlendMode.colorBurn),
-                    ),
-                  ),
-                ),
-                placeholder: (context, url) => Shimmer.fromColors(
-                  child: Container(
-                      height: 130.h, width: 200.w, color: Colors.grey),
-                  baseColor: Colors.grey[300]!,
-                  highlightColor: Colors.grey[400]!,
-                ),
-                errorWidget: (context, url, error) => Image.asset(
+              child: Image.file(
+                File(item.image.toString()),
+                fit: BoxFit.cover,
+                height: 40.h,
+                width: 40.w,
+                errorBuilder: (context, url, error) => Image.asset(
                   AppImages.no_image,
                   fit: BoxFit.contain,
                   height: 130.h,

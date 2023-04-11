@@ -1,5 +1,7 @@
 // ignore_for_file: sort_child_properties_last
 
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -36,35 +38,24 @@ class ProductDetailsView extends StatelessWidget {
               child: Row(
                 children: [
                   SizedBox(
-                    height: 98.h,
-                    width: 98.w,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.all(Radius.circular(8.r)),
-                      child: CachedNetworkImage(
-                        imageUrl: "",
-                        imageBuilder: (context, imageProvider) => Container(
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: imageProvider,
-                              fit: BoxFit.cover,
-                            ),
+                      height: 98.h,
+                      width: 98.w,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(16.r)),
+                        child: Image.file(
+                          File(homeController.productList[index!].image
+                              .toString()),
+                          fit: BoxFit.cover,
+                          height: 40.h,
+                          width: 40.w,
+                          errorBuilder: (context, url, error) => Image.asset(
+                            AppImages.no_image,
+                            fit: BoxFit.contain,
+                            height: 130.h,
+                            width: 200.w,
                           ),
                         ),
-                        placeholder: (context, url) => Shimmer.fromColors(
-                          child: Container(
-                              height: 130, width: 200, color: Colors.grey),
-                          baseColor: Colors.grey[300]!,
-                          highlightColor: Colors.grey[400]!,
-                        ),
-                        errorWidget: (context, url, error) => Image.asset(
-                          AppImages.no_image,
-                          fit: BoxFit.contain,
-                          height: 130.h,
-                          width: 200.w,
-                        ),
-                      ),
-                    ),
-                  ),
+                      )),
                   SizedBox(
                     height: 100.h,
                     width: 245.w,

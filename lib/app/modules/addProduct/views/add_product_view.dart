@@ -1,11 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
-
+import 'package:image_picker/image_picker.dart';
 import '../../../../config/theme/my_fonts.dart';
-import '../../../../utils/constants.dart';
-import '../../../components/custom_snackbar.dart';
 import '../controllers/add_product_controller.dart';
 
 class AddProductView extends StatefulWidget {
@@ -16,8 +16,9 @@ class AddProductView extends StatefulWidget {
 }
 
 class _AddProductViewState extends State<AddProductView> {
+  @override
   final formKey = GlobalKey<FormState>();
-
+  final ImagePicker picker = ImagePicker();
   @override
   Widget build(BuildContext context) {
     Get.put(AddProductController());
@@ -217,15 +218,107 @@ class _AddProductViewState extends State<AddProductView> {
                       ),
                     ),
                     Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.h),
+                      child: Container(
+                        height: 200,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12.r),
+                          color: theme.primaryColor.withOpacity(0.2),
+                        ),
+                        child: addProductController.imagePath.isNotEmpty
+                            ? InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    addProductController.imagePath = ''.obs;
+                                  });
+                                },
+                                child: Image.file(
+                                  File(addProductController.imagePath
+                                      .toString()),
+                                  fit: BoxFit.cover,
+                                  height: 40.h,
+                                  width: 40.w,
+                                ),
+                              )
+                            : Center(
+                                child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Pick Image",
+                                    style: TextStyle(
+                                      fontSize: MyFonts.headline4TextSize,
+                                      fontWeight: FontWeight.w900,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      ElevatedButton(
+                                        onPressed: () async {
+                                          addProductController
+                                              .getImageFromCamera();
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          elevation: 0,
+                                          minimumSize: Size(100.w, 30.h),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(26.r),
+                                          ),
+                                        ),
+                                        child: Text(
+                                          "Camera",
+                                          style: TextStyle(
+                                            fontSize: MyFonts.headline5TextSize,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 20,
+                                      ),
+                                      ElevatedButton(
+                                        onPressed: () async {
+                                          addProductController
+                                              .getImageFromGallary();
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          elevation: 0,
+                                          minimumSize: Size(100.w, 30.h),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(26.r),
+                                          ),
+                                        ),
+                                        child: Text(
+                                          "Gallary",
+                                          style: TextStyle(
+                                            fontSize: MyFonts.headline5TextSize,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              )),
+                      ),
+                    ),
+                    Padding(
                       padding: EdgeInsets.only(top: 10.h),
                       child: ElevatedButton(
                         onPressed: () async {
-                          // setState(() {
-                          //   if (formKey.currentState!.validate()) {
-                          //     addProductController.addPorduct();
-                          //   }
-                          // });
-                          addProductController.addPorduct();
+                          setState(() {
+                            if (formKey.currentState!.validate()) {
+                              addProductController.addPorduct();
+                            }
+                          });
                         },
                         style: ElevatedButton.styleFrom(
                           elevation: 0,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:task_app/app/modules/home/controllers/home_controller.dart';
 
 import '../../../components/custom_snackbar.dart';
@@ -14,9 +15,30 @@ class AddProductController extends GetxController with BaseController {
   TextEditingController pQuantity = TextEditingController();
   TextEditingController pImage = TextEditingController();
 
+  RxString imagePath = ''.obs;
   @override
   void onInit() {
     super.onInit();
+  }
+
+  Future getImageFromGallary() async {
+    final ImagePicker picker = ImagePicker();
+    final image = await picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      imagePath.value = image.path.toString();
+      update();
+    }
+    update();
+  }
+
+  Future getImageFromCamera() async {
+    final ImagePicker picker = ImagePicker();
+    final image = await picker.pickImage(source: ImageSource.camera);
+    if (image != null) {
+      imagePath.value = image.path.toString();
+      update();
+    }
+    update();
   }
 
   addPorduct() async {
@@ -25,7 +47,7 @@ class AddProductController extends GetxController with BaseController {
       "name": pName.text,
       "barcode": "string",
       "description": pDescription.text,
-      "image": "string",
+      "image": imagePath.toString(),
       "subCategory": 1851,
       "brand": 1901,
       "quantity": {
@@ -51,5 +73,6 @@ class AddProductController extends GetxController with BaseController {
     pPrice.clear();
     pQuantity.clear();
     pImage.clear();
+    imagePath = ''.obs;
   }
 }
