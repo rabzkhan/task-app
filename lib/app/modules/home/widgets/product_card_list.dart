@@ -7,6 +7,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:task_app/app/modules/home/model/product_model.dart';
 import 'package:task_app/app/modules/home/widgets/product_details_view.dart';
 import '../../../../config/theme/my_fonts.dart';
+import '../../../../utils/constants.dart';
 
 Widget itemCardList(ProductModel item, index, context) {
   var theme = Theme.of(context);
@@ -75,10 +76,12 @@ Widget itemCardList(ProductModel item, index, context) {
                   baseColor: Colors.grey[300]!,
                   highlightColor: Colors.grey[400]!,
                 ),
-                errorWidget: (context, url, error) => Container(
-                    height: 130.h,
-                    width: 200.w,
-                    color: Colors.grey.withOpacity(0.1)),
+                errorWidget: (context, url, error) => Image.asset(
+                  AppImages.no_image,
+                  fit: BoxFit.contain,
+                  height: 130.h,
+                  width: 200.w,
+                ),
               ),
             ),
           ),

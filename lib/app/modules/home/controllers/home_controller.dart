@@ -15,15 +15,11 @@ class HomeController extends GetxController with BaseController {
 
   @override
   getProductList() async {
-    loader = true;
-    update();
     var response =
         await DioClient().get(url: ApiUrl.products).catchError(handleError);
     if (response == null) return;
     productList.assignAll(
         (response.data as List).map((e) => ProductModel.fromJson(e)).toList());
-    loader = false;
-    update();
   }
 
   @override

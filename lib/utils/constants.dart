@@ -6,4 +6,5 @@ class AppImages {
   static String get dotCircle => 'assets/images/dot_circle.png';
   static String get iconListView => 'assets/images/list_icon.svg';
   static String get iconGridView => 'assets/images/grid_icon.svg';
+  static String get no_image => 'assets/images/no_image.jpg';
 }

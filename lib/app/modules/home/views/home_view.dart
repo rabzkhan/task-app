@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
-import 'package:task_app/app/modules/home/widgets/item_grid.dart';
+import 'package:task_app/app/modules/home/widgets/product_card_grid.dart';
 
 import '../../../../config/theme/my_fonts.dart';
 import '../../../../utils/constants.dart';
@@ -28,7 +28,17 @@ class HomeView extends GetView<HomeController> {
               height: 40.h,
               width: 40.w,
             ),
-            const Text('HomeView'),
+            SizedBox(
+              width: 8.w,
+            ),
+            Text(
+              'Softic',
+              style: TextStyle(
+                fontSize: MyFonts.headline4TextSize,
+                fontWeight: FontWeight.w900,
+                color: Colors.white,
+              ),
+            ),
           ],
         ),
       ),
@@ -69,7 +79,7 @@ class HomeView extends GetView<HomeController> {
                                       AppImages.iconListView,
                                       fit: BoxFit.cover,
                                       color: box.get('viewValue') != 0
-                                          ? Colors.black
+                                          ? Colors.grey
                                           : theme.primaryColor,
                                     ),
                                   ),
@@ -89,7 +99,7 @@ class HomeView extends GetView<HomeController> {
                                       AppImages.iconGridView,
                                       fit: BoxFit.cover,
                                       color: box.get('viewValue') != 1
-                                          ? Colors.black
+                                          ? Colors.grey
                                           : theme.primaryColor,
                                     ),
                                   ),
@@ -129,21 +139,23 @@ Widget productListView(homeController) {
 }
 
 Widget productGridView(context, HomeController homeController) {
-  return Column(
-    children: [
-      StaggeredGridView.countBuilder(
-        crossAxisSpacing: 10.0,
-        mainAxisSpacing: 10.0,
-        itemCount: homeController.productList.length,
-        crossAxisCount: 2,
-        physics: const NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        staggeredTileBuilder: (int index) => const StaggeredTile.fit(1),
-        itemBuilder: (BuildContext context, int index) {
-          return itemCardGrid(
-              homeController.productList[index], index, context);
-        },
-      )
-    ],
+  return Padding(
+    padding: EdgeInsets.symmetric(horizontal: 16.w),
+    child: Column(
+      children: [
+        StaggeredGridView.countBuilder(
+          crossAxisSpacing: 12.0,
+          mainAxisSpacing: 14.0,
+          itemCount: homeController.productList.length,
+          crossAxisCount: 2,
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          staggeredTileBuilder: (int i) => const StaggeredTile.fit(1),
+          itemBuilder: (BuildContext context, int index) {
+            return itemCardGrid(homeController.productList, index, context);
+          },
+        )
+      ],
+    ),
   );
 }
