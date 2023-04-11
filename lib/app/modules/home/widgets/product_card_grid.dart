@@ -91,19 +91,22 @@ Widget itemCardGrid(item, index, context) {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(item[index].name!,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: MyFonts.body1TextSize,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black,
-                      )),
+                  SizedBox(
+                    height: 40.h,
+                    child: Text(item[index].name!,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: MyFonts.body1TextSize,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        )),
+                  ),
                   SizedBox(
                     height: 8.h,
                   ),
                   SizedBox(
-                    height: 40.h,
+                    height: 30.h,
                     child: Text(
                       item[index].description!,
                       maxLines: 3,

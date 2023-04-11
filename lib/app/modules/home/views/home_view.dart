@@ -12,6 +12,9 @@ import '../controllers/home_controller.dart';
 import '../widgets/product_card_list.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
+import '../widgets/shimmer/product_card_grid_shimmer.dart';
+import '../widgets/shimmer/product_card_list_shimmer.dart';
+
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
   @override
@@ -114,9 +117,13 @@ class HomeView extends GetView<HomeController> {
                 child: Column(
                   children: [
                     if (box.get('viewValue') == 0)
-                      productListView(homeController),
+                      homeController.loader
+                          ? productCardListShimmer()
+                          : productListView(homeController),
                     if (box.get('viewValue') == 1)
-                      productGridView(context, homeController)
+                      homeController.loader
+                          ? productCardGridShimmer()
+                          : productGridView(context, homeController)
                   ],
                 ),
               )
