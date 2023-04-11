@@ -21,7 +21,7 @@ class ProductDetailsView extends StatelessWidget {
     var theme = Theme.of(context);
     return GetBuilder<HomeController>(
       builder: (homeController) => Container(
-        height: 400.h,
+        height: 440.h,
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16.r),
@@ -326,14 +326,14 @@ class ProductDetailsView extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 40.h,
+              height: 20,
             ),
             Center(
               child: ElevatedButton(
                 onPressed: () async {},
                 style: ElevatedButton.styleFrom(
                   elevation: 0,
-                  minimumSize: Size(340.w, 52.h),
+                  minimumSize: Size(340.w, 48.h),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(26.r),
                   ),
@@ -347,6 +347,32 @@ class ProductDetailsView extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(
+              height: 10,
+            ),
+            Center(
+              child: ElevatedButton(
+                onPressed: () async {
+                  homeController
+                      .deleteProduct(homeController.productList[index!].id);
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  elevation: 0,
+                  minimumSize: Size(340.w, 48.h),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(26.r),
+                  ),
+                ),
+                child: Text(
+                  "Delete Product",
+                  style: TextStyle(
+                    fontSize: MyFonts.headline5TextSize,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ),

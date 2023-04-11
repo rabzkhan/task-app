@@ -78,7 +78,9 @@ class DioClient {
     try {
       var response = await Dio()
           .delete(url,
-              options: Options(headers: Header.defaultHeader),
+              options: Options(
+                headers: {"Authorization": "Bearer ${box.get('token')}"},
+              ),
               queryParameters: params,
               data: payload)
           .timeout(const Duration(seconds: TIME_OUT_DURATION));

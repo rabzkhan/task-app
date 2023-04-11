@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_app/app/service/base_controller.dart';
 
@@ -25,6 +26,18 @@ class HomeController extends GetxController with BaseController {
         (response.data as List).map((e) => ProductModel.fromJson(e)).toList());
     loader = false;
     update();
+  }
+
+  deleteProduct(id) async {
+    showLoading();
+    var response = await DioClient()
+        .delete(url: ApiUrl.deleteProducts + id.toString())
+        .catchError(handleError);
+
+    getProductList();
+
+    hideLoading();
+    Get.back();
   }
 
   @override
