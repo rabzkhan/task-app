@@ -58,4 +58,19 @@ Container(
    ```
    flutter pub run flutter_native_splash:create
    ```
+## ScreenShots
 
+## Login Page view
+![login](https://user-images.githubusercontent.com/20728252/231259447-82732f0d-7aea-41a7-94e3-f3c6c2c47868.jpeg)
+
+## Home Page view
+![home_page](https://user-images.githubusercontent.com/20728252/231259235-c16fa4ba-99f8-43e0-afb8-bf177f3b0124.jpeg)
+
+## Product details view / delete view
+![product_details_view](https://user-images.githubusercontent.com/20728252/231259507-ed3efd9b-4a1e-4e92-a52c-e532d5e2cb2e.jpeg)
+
+## Add product view
+![add_product](https://user-images.githubusercontent.com/20728252/231259600-6598a090-6854-4608-8949-980d6f1e3c2b.jpeg)
+
+## Profile Page view
+![profile_view](https://user-images.githubusercontent.com/20728252/231259747-980d152b-5e68-4ab1-8e0a-3baf172a0624.jpeg)
