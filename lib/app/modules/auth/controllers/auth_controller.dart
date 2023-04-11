@@ -27,6 +27,7 @@ class AuthController extends GetxController with BaseController {
     if (response.statusCode == 200) {
       var box = Hive.box('myBox');
       box.put('token', response.data['id_token']);
+      box.put('viewValue', 0);
       Get.offAll(BottomNavbar(), binding: HomeBinding());
       print(box.get('token'));
     }
