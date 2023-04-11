@@ -52,6 +52,26 @@ class DioClient {
     }
   }
 
+  //Post with token
+  Future<dynamic> postWithToken(
+      {required String url, Map<String, dynamic>? params, dynamic body}) async {
+    var payload = json.encode(body);
+    try {
+      var response = await Dio()
+          .post(url,
+              options: Options(
+                headers: {"Authorization": "Bearer ${box.get('token')}"},
+              ),
+              queryParameters: params,
+              data: payload)
+          .timeout(const Duration(seconds: TIME_OUT_DURATION));
+
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   //PATCH
 
   Future<dynamic> patch(

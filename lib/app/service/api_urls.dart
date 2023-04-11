@@ -5,4 +5,5 @@ class ApiUrl {
   static const profile = "$baseUrl/account";
   static const products = "$baseUrl/products";
   static const deleteProducts = "$baseUrl/products/";
+  static const addProducts = "$baseUrl/create-products";
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task_app/app/service/base_controller.dart';
 
+import '../../../components/custom_snackbar.dart';
 import '../../../service/api_urls.dart';
 import '../../../service/dio_client.dart';
 import '../model/product_model.dart';
@@ -34,10 +35,11 @@ class HomeController extends GetxController with BaseController {
         .delete(url: ApiUrl.deleteProducts + id.toString())
         .catchError(handleError);
 
-    getProductList();
-
     hideLoading();
     Get.back();
+    getProductList();
+    CustomSnackBar.showCustomSnackBar(
+        title: "Product", message: "Succefully deleted!");
   }
 
   @override

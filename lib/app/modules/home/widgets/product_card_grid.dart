@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:task_app/app/modules/home/controllers/home_controller.dart';
 import 'package:task_app/app/modules/home/widgets/product_details_view.dart';
@@ -13,11 +12,9 @@ Widget itemCardGrid(item, index, context) {
   var theme = Theme.of(context);
   return InkWell(
     onTap: () {
-      showMaterialModalBottomSheet(
+      showBottomSheet(
         context: context,
-        backgroundColor: Colors.transparent,
         builder: (context) => SingleChildScrollView(
-          controller: ModalScrollController.of(context),
           child: ProductDetailsView(index: index),
         ),
       );

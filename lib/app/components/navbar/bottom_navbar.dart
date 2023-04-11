@@ -11,7 +11,7 @@ class BottomNavbar extends StatelessWidget {
 
   List navigation = [
     const HomeView(),
-    const AddProductView(),
+    AddProductView(),
     const ProfileView(),
   ];
   int _selectedIndex = 0;
