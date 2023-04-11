@@ -19,6 +19,7 @@ class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    Get.put(HomeController());
     var box = Hive.box('myBox');
     var theme = Theme.of(context);
     return Scaffold(

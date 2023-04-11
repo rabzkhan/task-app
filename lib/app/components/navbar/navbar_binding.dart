@@ -7,16 +7,14 @@ import '../../modules/profile/controllers/profile_controller.dart';
 class NavbarBinding extends Bindings {
   @override
   void dependencies() {
-    // Get.lazyPut<HomeController>(
-    //   () => HomeController(),
-    // );
-    // Get.lazyPut<AddProductController>(
-    //   () => AddProductController(),
-    // );
-    // Get.lazyPut<ProfileController>(
-    //   () => ProfileController(),
-    // );
-    Get.put(ProfileController(), permanent: true);
-    Get.put(HomeController(), permanent: true);
+    Get.lazyPut<HomeController>(
+      () => HomeController(),
+    );
+    Get.lazyPut<AddProductController>(
+      () => AddProductController(),
+    );
+    Get.lazyPut<ProfileController>(
+      () => ProfileController(),
+    );
   }
 }

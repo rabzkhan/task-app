@@ -9,20 +9,27 @@ import '../../../service/dio_client.dart';
 
 class ProfileController extends GetxController with BaseController {
   ProfileModel profileModel = ProfileModel();
+  bool loader = false;
   void onInit() {
     getProfileData();
     super.onInit();
   }
 
   getProfileData() async {
-    // showLoading();
+    loader = true;
+    update();
+    showLoading();
     var response = await DioClient()
         .get(
           url: ApiUrl.profile,
         )
         .catchError(handleError);
     profileModel = ProfileModel.fromJson(response.data);
-    // hideLoading();
+    update();
+    hideLoading();
+    loader = false;
+
+    update();
   }
 
   @override

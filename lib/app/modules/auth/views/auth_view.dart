@@ -3,14 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
-import 'package:task_app/app/components/custom_snackbar.dart';
 import 'package:task_app/app/modules/auth/controllers/auth_controller.dart';
 
 import 'package:task_app/config/theme/my_fonts.dart';
-
 import '../../../../utils/constants.dart';
-import '../../../components/navbar/bottom_navbar.dart';
-import '../../home/bindings/home_binding.dart';
 
 class AuthView extends StatefulWidget {
   const AuthView({Key? key}) : super(key: key);
@@ -34,6 +30,7 @@ class _AuthViewState extends State<AuthView> {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(AuthController());
     var theme = Theme.of(context);
     return Scaffold(
       body: GetBuilder<AuthController>(
@@ -72,6 +69,7 @@ class _AuthViewState extends State<AuthView> {
                       }
                     },
                     decoration: InputDecoration(
+                      hintText: "Username",
                       errorBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.r),
                         borderSide: BorderSide(
@@ -115,6 +113,7 @@ class _AuthViewState extends State<AuthView> {
                       }
                     },
                     decoration: InputDecoration(
+                      hintText: "Password",
                       errorBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.r),
                         borderSide: BorderSide(
@@ -194,7 +193,7 @@ class _AuthViewState extends State<AuthView> {
                       setState(() {
                         if (formKey.currentState!.validate()) {
                           authController.login(authController.userName.text,
-                              authController.password.text, true);
+                              authController.password.text, rememberMe);
                         }
                       });
                     },
